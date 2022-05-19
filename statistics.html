@@ -1,0 +1,204 @@
+<html>
+<head>
+	<!-- Jangan lupa cantumkan link CDN dibawah ini : -->
+    <!-- Jangan lupa untuk import css JQUERY UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />
+
+    <!-- Jangan lupa juga untuk import CDN JQUERY dan JQUERY UI nya, CDN JQUERY UI diletakkan dibawah JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <!-- ---------------------------------------------- -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+
+	<title id="statistics-title">Statistics</title>
+	<link rel="icon" href="icon.png">
+
+	<div id="header">
+		<table id="headertable">
+			<tr>
+				<td style="padding-left: 0%;">
+					<form action="index.html">
+						<button type="submit" id="headerbutton" class="backtomenu" href=""><img id="buttonimage" src="assets/Menus.png"></button>
+					</form>
+				</td>
+				<td style="padding-left: 0%;">
+					<form action="howto.html">
+						<button type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Question.png"></button>
+					</form>
+				</td>
+
+				<td style="padding-left: 353%;">
+					<img id="headertitle" src="assets/WordleTitle.png">
+				</td>
+
+				<td style="padding-left: 704%; padding-right: 0%;">
+					<form action="statistics.html">
+						<button type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Statistic.png"></button>
+					</form>
+				</td>
+				<td style="padding-left: 704%; padding-right: 0%;">
+					<form action="options.html">
+						<button type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Options.png"></button>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+</head>
+<body">
+<br><br><br>
+<div>
+<table align="center" id="tablehowto">
+	<tr>
+		<td>
+			<div align="center">
+				<b style="font-size: 32px;">
+					<span id="statistics-name"></span>STATISTICS<br>
+				</b>
+			</div>
+			<br>
+			<table id="tabledescription">
+				<tr style="text-align:center; font-size: 42px; font-weight: bold;">
+					<td>
+						<span id="spanRounds">0</span>                  
+					</td>
+					<td>
+						<span id="spanWinrate">0</span> 
+					</td>
+					<td>
+						<span id="spanWinattempts">0</span> 
+					</td>
+					<td>
+						<span id="spanHighest">0</span> 
+					</td>
+				</tr>
+				<tr style="text-align:center; font-size: 17px;">
+					<td>
+						Rounds Played                         
+					</td>
+					<td>
+						Current Winrate
+					</td>
+					<td>
+						Average Attempts/Wins
+					</td>
+					<td>
+						Highest Streak
+					</td>
+				</tr>
+			</table>
+			<hr>
+			<div align="center">
+				<b style="font-size: 32px;">
+					HISTORY<br>
+				</b>
+				<br>
+				<table id="history-table">
+					<tr style="font-weight: bold;">
+						<td>
+							No.
+						</td>
+						<td>
+							WORD
+						</td>
+						<td > 
+							ATTEMPTS
+						</td>
+					</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
+</table>
+<br>
+<br>
+<br>
+</div>
+
+<script>
+	$("document").ready(function () {
+
+		currentUser = JSON.parse(localStorage.getItem('currentUser'));
+		arrU = JSON.parse(localStorage.getItem('arrU'));
+
+		console.log(arrU);
+
+		let displayUser = currentUser[0];
+
+		$("#statistics-name").text(displayUser 	+ "'s ");
+
+		$("#statistics-title").text(displayUser + " - Statistics");
+
+		$("#spanRounds").text(currentUser[1]);
+
+		if (currentUser[2] > currentUser[3]) {
+			currentUser[3] = currentUser[2];	
+		}
+
+		$("#spanHighest").text( currentUser[3] );
+
+	
+		
+
+		let wins = 0;
+		let attempts = 0;
+		for (let i = 0; i < currentUser[4].length; i++) {
+			if (currentUser[4][i][1] != "Lose") {
+				wins++;
+				attempts = currentUser[4][i][1] + attempts;
+			}
+		}
+		let displayWinrate = wins/currentUser[1];
+		$("#spanWinrate").text( displayWinrate.toFixed(2) );
+
+		$("#spanWinattempts").text( (attempts/wins).toFixed(2) );
+
+		console.log(currentUser);
+		for (let i = 0; i < currentUser[4].length; i++ ) {
+			let tableRow = document.createElement("tr");
+
+			let num = document.createElement("td");
+			let wrd = document.createElement("td");
+			let atm = document.createElement("td");
+
+			num.append(i+1+". ");
+			wrd.append(currentUser[4][i][0]);
+			atm.append(currentUser[4][i][1]);
+
+			tableRow.append(num, wrd, atm);
+
+			$("#history-table").append(tableRow);
+		}
+
+		console.log(arrU[0][0][0]);
+		console.log(currentUser[0][0]);
+		console.log(arrU.length);
+
+		$( ".backtomenu" ).click(function() {
+			for (let i = 0; i < arrU.length; i++) {
+				if (arrU[i][0][0] == currentUser[0][0]) {
+					arrU[i][1] = currentUser[1];
+					arrU[i][2] = currentUser[2];
+					arrU[i][3] = currentUser[3];
+					arrU[i][4] = currentUser[4];
+				}
+			}	
+
+			localStorage.setItem("arrU", JSON.stringify(arrU));
+			localStorage.setItem("currentUser", JSON.stringify(currentUser));
+		});
+
+		localStorage.setItem("arrU", JSON.stringify(arrU));
+		localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+	});
+</script>
+
+
+</body>
+</html>

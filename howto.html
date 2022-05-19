@@ -1,0 +1,224 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+
+	<!-- Jangan lupa cantumkan link CDN dibawah ini : -->
+    <!-- Jangan lupa untuk import css JQUERY UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />
+
+    <!-- Jangan lupa juga untuk import CDN JQUERY dan JQUERY UI nya, CDN JQUERY UI diletakkan dibawah JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <!-- ---------------------------------------------- -->
+
+
+	<title id="howto-title">Tutorial</title>
+	<link rel="icon" href="icon.png">
+
+	<div id="header">
+		<table id="headertable">
+			<tr>
+				<td style="padding-left: 0%;">
+					<form action="index.html">
+						<button class="toIndex" type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Menus.png"></button>
+					</form>
+				</td>
+				<td style="padding-left: 0%;">
+					<form action="howto.html">
+						<button class="toHowTo" type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Question.png"></button>
+					</form>
+				</td>
+
+				<td style="padding-left: 1295%; padding-right: 0%;">
+					<form>
+						<button class="toStats" type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Statistic.png"></button>
+					</form>
+				</td>
+				<td style="padding-left: 1295%; padding-right: 0%;">
+					<form>
+						<button class="toOptions" type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Options.png"></button>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+</head>
+<body>
+	<br><br><br>
+	<div>
+    <table align="center" id="tablehowto">
+		<tr>
+			<td>
+				<div align="center">
+					<b style="font-size: 32px;">
+						HOW TO PLAY<br>
+					</b>
+				</div>
+				<br>
+				<table id="tabledescription">
+					<tr>
+						<td>
+							Guess the WORDLE in six tries.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Each guess must be a valid five-letter word. Hit the enter button to submit.
+						</td>
+					</tr>
+					<tr>
+						<td>
+							After each guess, the color of the tiles will change to show how close your guess was to the word.
+						</td>
+					</tr>
+				</table>
+
+
+				
+				<hr>
+				<b style="font-size: 36px;">Examples</b>
+				<br>
+				<table id="tabelkata">
+					<tr>
+						<td>
+							<div class="greencontainer">
+								W
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								E
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								A
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								R
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								Y
+							</div>
+						</td>
+					</tr>
+				</table>
+				The letter W is in the word and in the correct spot.
+				<table id="tabelkata">
+					<tr>
+						<td>
+							<div class="emptycontainer">
+								P
+							</div>
+						</td>
+						<td>
+							<div class="yellowcontainer">
+								I
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								L
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								L
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								S
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				The letter I is in the word but in the wrong spot.
+				<table id="tabelkata">
+					<tr>
+						<td>
+							<div class="emptycontainer">
+								V
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								A
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								G
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								U
+							</div>
+						</td>
+						<td>
+							<div class="emptycontainer">
+								E
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				The letter U is not in the word in any spot.
+			</td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<br>
+	</div>
+
+	<script>
+		$("document").ready(function () { 
+
+			$(".toHowTo").click(function () {
+				location.href = 'howto.html';
+			});
+
+			$(".toStats").click(function () {
+				if (currentUser == undefined) {
+					alert("Belum masukkan nama !");
+				}
+				else location.href = 'statistics.html';
+			});
+
+			$(".toOptions").click(function () {
+				if (currentUser == undefined) {
+					alert("Belum masukkan nama !");
+				}
+				else location.href = 'statistics.html';
+			});
+
+			$( ".backtomenu" ).click(function() {
+				for (let i = 0; i < arrU.length; i++) {
+					if (arrU[i][0][0] == currentUser[0][0]) {
+						arrU[i][1] = currentUser[1];
+						arrU[i][2] = currentUser[2];
+						arrU[i][3] = currentUser[3];
+						arrU[i][4] = currentUser[4];
+					}
+				}	
+
+				localStorage.setItem("arrU", JSON.stringify(arrU));
+				localStorage.setItem("currentUser", JSON.stringify(currentUser));
+			});
+
+		});
+	</script>
+</body>
+</html>

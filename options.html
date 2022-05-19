@@ -1,0 +1,211 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+
+	<!-- Jangan lupa cantumkan link CDN dibawah ini : -->
+    <!-- Jangan lupa untuk import css JQUERY UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />
+
+    <!-- Jangan lupa juga untuk import CDN JQUERY dan JQUERY UI nya, CDN JQUERY UI diletakkan dibawah JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <!-- ---------------------------------------------- -->
+
+	<title id="options-title">Options</title>
+	<link rel="icon" href="icon.png">
+
+	<div id="header">
+		<table id="headertable">
+			<tr>
+				<td style="padding-left: 0%;">
+					<form action="index.html">
+						<button type="submit" id="headerbutton" class="backtomenu" href=""><img id="buttonimage" src="assets/Menus.png"></button>
+					</form>
+				</td>
+				<td style="padding-left: 0%;">
+					<form action="howto.html">
+						<button type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Question.png"></button>
+					</form>
+				</td>
+
+				<td style="padding-left: 353%;">
+					<img id="headertitle" src="assets/WordleTitle.png">
+				</td>
+
+				<td style="padding-left: 704%; padding-right: 0%;">
+					<form action="statistics.html">
+						<button type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Statistic.png"></button>
+					</form>
+				</td>
+				<td style="padding-left: 704%; padding-right: 0%;">
+					<form action="options.html">
+						<button type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Options.png"></button>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+</head>
+<body>
+    <br><br><br>
+	<div>
+    <table align="center" id="tablehowto">
+		<tr>
+			<td>
+				<div align="center">
+					<b style="font-size: 32px;">
+						OPTIONS<br>
+					</b>
+				</div>
+				<br>
+				<table id="tabledescription" style="width: 500px;">
+					<tr>
+						<td>
+							Change Name                         
+						</td>
+						<td style="padding-right: 32px;">
+							<input id="changename-btn" type="button" class="optbtn"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Clear History                         
+						</td>
+						<td style="padding-right: 32px;">
+							<input id="clearhistory-btn" type="button" class="optbtn"></input>
+						</td>
+					</tr>
+					<tr>
+						<td style="color: red;">
+							Delete Account                         
+						</td>
+						<td style="padding-right: 32px;">
+							<input id="deleteacc-btn" type="button" class="optbtn"></input>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<br>
+	</div>
+
+	<script>
+		$("document").ready(function () {
+
+			currentUser = JSON.parse(localStorage.getItem('currentUser'));
+			arrU = JSON.parse(localStorage.getItem('arrU'));
+
+			console.log(arrU);
+			$("#deleteacc-btn").click( function() {
+				let text = "Are you sure to delete your account ( You will be sent to the main menu ) ?\nEither OK or Cancel.";
+				if (confirm(text) == true) {
+				
+
+					for (let i = 0; i < arrU.length; i++) {
+						if (arrU[i][0][0] == currentUser[0][0]) {
+							arrU.splice( i, 1);
+						}
+					}	
+
+					localStorage.setItem("arrU", JSON.stringify(arrU));
+					localStorage.removeItem("currentUser");
+
+					location.href = 'index.html';
+				}
+
+				
+			})
+
+			$("#clearhistory-btn").click( function() {
+				let text = "Are you sure to clear your history ( streak and rounds will be kept ) ?\nEither OK or Cancel.";
+				if (confirm(text) == true) {
+					currentUser[4] = [];
+
+					for (let i = 0; i < arrU.length; i++) {
+					if (arrU[i][0][0] == currentUser[0][0]) {
+						arrU[i][1] = currentUser[1];
+						arrU[i][2] = currentUser[2];
+						arrU[i][3] = currentUser[3];
+						arrU[i][4] = currentUser[4];
+						}
+					}	
+
+					localStorage.setItem("arrU", JSON.stringify(arrU));
+					localStorage.setItem("currentUser", JSON.stringify(currentUser));
+				} else {
+					
+				}
+			});
+
+			$("#changename-btn").click( function() {
+				var newname = prompt("Input Name : ", "");
+
+				let namaDobol = false;
+				for (let i = 0; i < arrU.length; i++) {
+					if (arrU[i][0][0] == newname) {
+						namaDobol = true;
+					}
+				}
+
+				if (namaDobol) {
+					alert("Nama telah digunakan");
+				}
+				else {
+					if (newname != "") {
+						console.log(arrU[0][0][0]);
+						console.log(currentUser[0][0]);
+						
+						for (let i = 0; i < arrU.length; i++) {
+							if (arrU[i][0][0] == currentUser[0][0]) {
+								
+								arrU[i][1] = currentUser[1];
+								arrU[i][2] = currentUser[2];
+								arrU[i][3] = currentUser[3];
+								arrU[i][4] = currentUser[4];
+								arrU[i][0][0] = newname;
+								}
+						}	
+
+						currentUser[0][0] = newname;
+
+						console.log(arrU);
+						console.log(currentUser);
+	
+						localStorage.setItem("arrU", JSON.stringify(arrU));
+						localStorage.setItem("currentUser", JSON.stringify(currentUser));
+					}
+					else alert("Field nama kosong")
+				}
+
+			});
+
+			$( ".backtomenu" ).click(function() {
+				for (let i = 0; i < arrU.length; i++) {
+					if (arrU[i][0][0] == currentUser[0][0]) {
+						arrU[i][1] = currentUser[1];
+						arrU[i][2] = currentUser[2];
+						arrU[i][3] = currentUser[3];
+						arrU[i][4] = currentUser[4];
+					}
+				}	
+
+				localStorage.setItem("arrU", JSON.stringify(arrU));
+				localStorage.setItem("currentUser", JSON.stringify(currentUser));
+			});
+
+			localStorage.setItem("arrU", JSON.stringify(arrU));
+			localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+		});
+	</script>
+</body>
+</html>

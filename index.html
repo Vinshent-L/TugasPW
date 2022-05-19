@@ -1,0 +1,98 @@
+	<html>
+	<head>
+		<!-- Jangan lupa cantumkan link CDN dibawah ini : -->
+		<!-- Jangan lupa untuk import css JQUERY UI -->
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />
+
+		<!-- Jangan lupa juga untuk import CDN JQUERY dan JQUERY UI nya, CDN JQUERY UI diletakkan dibawah JQUERY -->
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+		<!-- ---------------------------------------------- -->
+		<script type="text/javascript" src="script.js"></script>
+
+		<title id="index-title">Welcome to Wordle</title>
+		<link rel="icon" href="icon.png">
+
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style.css">
+
+		<div id="header">
+			<table id="headertable">
+				<tr>
+					<td style="padding-left: 0%;">
+						<form action="index.html">
+							<button class="toIndex" type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Menus.png"></button>
+						</form>
+					</td>
+					<td style="padding-left: 0%;">
+						<form action="howto.html">
+							<button class="toHowTo" type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Question.png"></button>
+						</form>
+					</td>
+
+					<td style="padding-left: 1295%; padding-right: 0%;">
+						<form>
+							<button class="toStats" type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Statistic.png"></button>
+						</form>
+					</td>
+					<td style="padding-left: 1295%; padding-right: 0%;">
+						<form>
+							<button class="toOptions" type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Options.png"></button>
+						</form>
+					</td>
+				</tr>
+			</table>
+			<hr>
+		</div>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>	
+		<div align="center" style="color: white; margin-bottom: 8px;">
+			<b>Welcome to</b>
+		</div>
+
+		<div align="center">
+			<img src="assets/WordleTitle.png">	
+		</div>
+
+		<div align="center" style="color: white; font-size: 19px; margin-top: 6px;">
+			<i>Word Guessing Game</i>	
+		</div>
+
+		<br>
+		<br>
+
+		<div align="center">
+			<table>
+				<tr>
+					<td>
+						<form action="game.html">
+							<input id="insertusername" type="text" placeholder="   Play As " required>
+							<button type="submit" id="headerbutton"><b id="playbutton">Play</b></button>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</head>
+	<body>
+		<script>
+			$(document).on("keydown", "form", function(event) { 
+				return event.key != "Enter";
+
+				
+			});
+		</script>
+
+		
+		
+	</body>
+	</html>

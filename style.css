@@ -1,0 +1,172 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    margin:0; padding:0; 
+    overflow-x: hidden; 
+    background-color: rgb(18, 18, 19);
+}
+#headertitle {
+    align-content: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 25px;
+}
+#headerbutton {
+    background: none;
+    border: none;
+}
+#headerbutton:hover{
+    cursor: pointer;
+}
+#playbutton {
+    font-size: 23px;
+    background: none;
+    border: none;
+    color:white;
+}
+#playbutton:hover{
+    cursor: pointer;
+    color: rgb(164, 161, 187);
+}
+#headertable {
+    margin-top: 7px;    
+    margin-bottom: -12px;
+}
+#buttonimage {
+    height: 20px;
+
+}
+#tablehowto {
+    border: solid white;
+}
+#tablehowto td{
+    color: white;
+    padding: 10% 12% 10% 12%;
+}
+#tabledescription td{
+    color: white;
+    padding: 0% 0% 4% 0%;
+}
+
+#history-table{
+    border: white;
+    border-style: solid;
+}
+#history-table td{
+    width: 200px;
+}    
+#history-table tr{
+    height: 70%;   
+}
+.optbtn{
+    border: solid;
+    border-color: white;
+    background-color: black;
+    border-radius: 100%;
+    height: 21px;
+    width: 21px;
+}
+
+
+.greencontainer{
+    margin: auto;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgb(126, 160, 75);
+    font-weight: bolder;
+    font-size: 43px;
+    width: 60px;
+    height: 60px;
+    color: white;
+}
+.greencontainer:hover{
+    width: 65px;
+    height: 65px;
+    color: white;
+}
+.yellowcontainer:hover{
+    width: 65px;
+    height: 65px;
+    color: white;
+}
+.emptycontainer:hover{
+    width: 65px;
+    height: 65px;
+    color: white;
+}
+
+.yellowcontainer{
+    margin: auto;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgb(184, 177, 80);
+    font-weight: bolder;
+    font-size: 43px;
+    width: 60px;
+    height: 60px;
+    color: white;
+}
+.emptycontainer{
+    margin: auto;
+    text-align: center;
+    border-radius: 10px;
+    border: 0.5px solid rgb(190, 190, 190);
+    font-weight: bolder;
+    font-size: 43px;
+    width: 60px;
+    height: 60px;
+    color: white;
+}
+#tabelkata{
+    padding:0;
+}
+#tabelkata td{
+    padding: 5px 5px 5px 5px;
+}
+#optioncheckbox {
+    border: none;
+    background-color: black;
+}
+
+#keyboard-container {
+    margin-left: 30%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+#keyboard-baris {
+    display: flex;
+    justify-content: center;
+    /* width: 100%;
+    height: 100%; */
+    max-width: 500px;
+    margin: 0 auto 8px;
+}
+
+#keyboard-baris button {
+    font-family: inherit;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    height: 58px;
+
+    cursor: pointer;
+    background-color: rgb(129, 131, 132);
+    color: rgb(215, 218, 220);
+    flex-grow: 1;
+    margin-right: 6px;
+    border-radius: 4px;
+    user-select: none;
+}
+
+#insertusername {
+    background-color: black;
+    border: solid 0.5px rgb(184, 184, 184);
+    border-radius: 12px;
+    color: white;
+}
+

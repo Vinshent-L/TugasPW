@@ -1,0 +1,117 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<!-- Jangan lupa cantumkan link CDN dibawah ini : -->
+    <!-- Jangan lupa untuk import css JQUERY UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css" />
+
+    <!-- Jangan lupa juga untuk import CDN JQUERY dan JQUERY UI nya, CDN JQUERY UI diletakkan dibawah JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <!-- ---------------------------------------------- -->
+	<script type="text/javascript" src="game.js"></script>
+
+	<title id="game-title">Game</title>
+	<link rel="icon" href="icon.png">
+
+	<div id="header">
+		<table id="headertable">
+			<tr>
+				<td style="padding-left: 0%;">
+					<form action="index.html">
+						<button type="submit" id="headerbutton" class="backtomenu" href=""><img id="buttonimage" src="assets/Menus.png"></button>
+					</form>
+				</td>
+				<td style="padding-left: 0%;">
+					<form action="howto.html">
+						<button type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Question.png"></button>
+					</form>
+				</td>
+
+				<td style="padding-left: 353%;">
+					<img id="headertitle" src="assets/WordleTitle.png">
+				</td>
+
+				<td style="padding-left: 704%; padding-right: 0%;">
+					<form action="statistics.html">
+						<button type="submit" id="headerbutton" class="statistics-headerbutton" href=""><img id="buttonimage" src="assets/Statistic.png"></button>
+					</form>
+				</td>
+				<td style="padding-left: 704%; padding-right: 0%;">
+					<form action="options.html">
+						<button type="submit" id="headerbutton" href=""><img id="buttonimage" src="assets/Options.png"></button>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+</head>
+<body>
+	<br>
+	<br>
+    <div align="center" id="world-board">	
+	</div>
+
+	<br><br>
+
+	<div align="center" style="color: white;">
+		Playing as : <b><span id="gameMenuName"></span></b> <br>
+		Current Streak : <b><span id="gameMenuStreak"></span></b> 
+	</div>
+
+	<br><br>
+
+	  
+	  <script>
+		  $("document").ready(function () {
+
+			currentUser = JSON.parse(localStorage.getItem('currentUser'));
+			arrU = JSON.parse(localStorage.getItem('arrU'));
+
+			console.log(arrU);
+			
+			$("#gameMenuName").text(currentUser[0]);
+
+			$("#gameMenuStreak").text(currentUser[2]);
+
+			$("#game-title").text(currentUser[0] + " - Game");
+
+			localStorage.setItem("arrU", JSON.stringify(arrU));
+        	localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+			$( ".backtomenu" ).click(function() {
+				for (let i = 0; i < arrU.length; i++) {
+					if (arrU[i][0][0] == currentUser[0][0]) {
+						arrU[i][1] = currentUser[1];
+						arrU[i][2] = currentUser[2];
+						arrU[i][3] = currentUser[3];
+						arrU[i][4] = currentUser[4];
+					}
+				}	
+
+				localStorage.setItem("arrU", JSON.stringify(arrU));
+				localStorage.setItem("currentUser", JSON.stringify(currentUser));
+			});
+
+			$( ".statistics-headerbutton" ).click(function() {
+
+				localStorage.setItem("arrU", JSON.stringify(arrU));
+				localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+			});
+
+
+			
+
+			});
+	  </script>
+</body>
+
+	
+
+</html>
